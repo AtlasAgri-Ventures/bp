@@ -1,0 +1,1480 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business Plan AgriAfrica Ventures 2026-2030</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --vert-atlas: #2A5434;
+            --or-sahara: #D4A574;
+            --blanc-neige: #FFFFFF;
+            --bleu-mediterranee: #1E6BA8;
+            --terre-rouge: #A0522D;
+            --gris-roche: #5A5A5A;
+        }
+
+        body {
+            font-family: 'Open Sans', Arial, sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Sidebar Navigation */
+        .sidebar {
+            width: 280px;
+            background-color: var(--vert-atlas);
+            color: white;
+            position: fixed;
+            height: 100vh;
+            overflow-y: auto;
+            transition: all 0.3s;
+            z-index: 1000;
+        }
+
+        .logo {
+            padding: 20px;
+            text-align: center;
+            background-color: rgba(0,0,0,0.2);
+            border-bottom: 2px solid var(--or-sahara);
+        }
+
+        .logo h1 {
+            font-size: 24px;
+            margin-bottom: 5px;
+        }
+
+        .logo p {
+            font-size: 12px;
+            color: var(--or-sahara);
+        }
+
+        .nav-menu {
+            list-style: none;
+            padding: 20px 0;
+        }
+
+        .nav-item {
+            padding: 15px 25px;
+            cursor: pointer;
+            transition: all 0.3s;
+            border-left: 4px solid transparent;
+        }
+
+        .nav-item:hover {
+            background-color: rgba(212, 165, 116, 0.2);
+            border-left-color: var(--or-sahara);
+        }
+
+        .nav-item.active {
+            background-color: rgba(212, 165, 116, 0.3);
+            border-left-color: var(--or-sahara);
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-left: 280px;
+            padding: 30px;
+            width: calc(100% - 280px);
+        }
+
+        .section {
+            display: none;
+            animation: fadeIn 0.5s;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h2 {
+            color: var(--vert-atlas);
+            margin-bottom: 20px;
+            font-size: 32px;
+            border-bottom: 3px solid var(--or-sahara);
+            padding-bottom: 10px;
+        }
+
+        h3 {
+            color: var(--bleu-mediterranee);
+            margin: 20px 0 15px;
+            font-size: 24px;
+        }
+
+        h4 {
+            color: var(--terre-rouge);
+            margin: 15px 0 10px;
+            font-size: 20px;
+        }
+
+        .card {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, var(--vert-atlas), var(--bleu-mediterranee));
+            color: white;
+            padding: 25px;
+            border-radius: 10px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-number {
+            font-size: 36px;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+
+        .stat-label {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: var(--vert-atlas);
+            color: white;
+        }
+
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+
+        .chart-container {
+            position: relative;
+            height: 400px;
+            margin: 30px 0;
+        }
+
+        .value-card {
+            background: linear-gradient(135deg, #f5f5f5, white);
+            padding: 20px;
+            border-radius: 8px;
+            margin: 10px 0;
+            border-left: 5px solid var(--or-sahara);
+        }
+
+        .timeline {
+            position: relative;
+            padding: 20px 0;
+        }
+
+        .timeline-item {
+            padding: 20px;
+            margin: 20px 0;
+            border-left: 3px solid var(--or-sahara);
+            margin-left: 20px;
+            position: relative;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -8px;
+            top: 20px;
+            width: 13px;
+            height: 13px;
+            background: var(--or-sahara);
+            border-radius: 50%;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            background-color: var(--or-sahara);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn:hover {
+            background-color: var(--terre-rouge);
+        }
+
+        .highlight-box {
+            background-color: rgba(212, 165, 116, 0.1);
+            border: 2px solid var(--or-sahara);
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+            }
+            
+            .main-content {
+                margin-left: 0;
+                width: 100%;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .progress-bar {
+            background-color: #e0e0e0;
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 10px 0;
+        }
+
+        .progress {
+            background-color: var(--or-sahara);
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            transition: width 2s ease;
+        }
+
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 2000;
+            background: var(--vert-atlas);
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            .mobile-menu {
+                display: block;
+            }
+            
+            .sidebar {
+                transform: translateX(-100%);
+                position: fixed;
+            }
+            
+            .sidebar.open {
+                transform: translateX(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="mobile-menu" onclick="toggleMenu()">☰ Menu</div>
+    
+    <div class="container">
+        <nav class="sidebar" id="sidebar">
+            <div class="logo">
+                <h1>AgriAfrica Ventures</h1>
+                <p>De l'Atlas à l'Afrique, nous cultivons votre avenir</p>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item active" onclick="showSection('executive-summary')">Executive Summary</li>
+                <li class="nav-item" onclick="showSection('vision-mission')">Vision & Mission</li>
+                <li class="nav-item" onclick="showSection('strategie-marque')">Stratégie de Marque</li>
+                <li class="nav-item" onclick="showSection('production-agricole')">Production Agricole</li>
+                <li class="nav-item" onclick="showSection('etude-marche')">Études de Marché</li>
+                <li class="nav-item" onclick="showSection('plan-operationnel')">Plan Opérationnel</li>
+                <li class="nav-item" onclick="showSection('projections-financieres')">Projections Financières</li>
+                <li class="nav-item" onclick="showSection('strategie-esg')">Stratégie ESG</li>
+                <li class="nav-item" onclick="showSection('risques-mitigation')">Risques & Mitigation</li>
+                <li class="nav-item" onclick="showSection('feuille-route')">Feuille de Route</li>
+            </ul>
+        </nav>
+
+        <main class="main-content">
+            <!-- Executive Summary -->
+            <section id="executive-summary" class="section active">
+                <h2>Executive Summary</h2>
+                
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-label">Objectif Surface 2030</div>
+                        <div class="stat-number">50 000 Ha</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-label">Investissement Total</div>
+                        <div class="stat-number">1 Mrd MAD</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-label">CA Projeté 2030</div>
+                        <div class="stat-number">2.5 Mrd MAD</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-label">Emplois Créés</div>
+                        <div class="stat-number">10 000+</div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3>Présentation d'AgriAfrica Ventures</h3>
+                    <p>AgriAfrica Ventures est une co-entreprise agricole innovante créée par l'alliance stratégique entre M. Elias Hicham ASKOUR (expertise agricole de plus de 30 ans) et KEF Investissements (expertise financière). Notre ambition est de transformer l'agriculture africaine en combinant tradition et innovation pour créer un modèle durable et rentable.</p>
+                    
+                    <h4>Nos Avantages Concurrentiels</h4>
+                    <div class="value-card">
+                        <strong>✓ Expertise Prouvée:</strong> Plus de 30 ans d'expérience dans l'agriculture au Maroc et en Afrique
+                    </div>
+                    <div class="value-card">
+                        <strong>✓ Vision Intégrée:</strong> De la production à l'export, en passant par la transformation
+                    </div>
+                    <div class="value-card">
+                        <strong>✓ Leadership Caroubier:</strong> Ambition de dominer ce marché à forte croissance
+                    </div>
+                    <div class="value-card">
+                        <strong>✓ Scale-up Ambitieux:</strong> Capacité à gérer de 1.000 à 50.000 hectares
+                    </div>
+                    <div class="value-card">
+                        <strong>✓ Double ADN:</strong> Expertise agricole + Ingénierie financière
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3>Indicateurs Clés de Performance</h3>
+                    <div class="chart-container">
+                        <canvas id="kpiChart"></canvas>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Vision & Mission -->
+            <section id="vision-mission" class="section">
+                <h2>Vision & Mission</h2>
+                
+                <div class="card">
+                    <h3>Notre Vision</h3>
+                    <div class="highlight-box">
+                        <p style="font-size: 20px; font-style: italic; text-align: center;">
+                            "Devenir le leader panafricain de l'agriculture durable et innovante, transformant 50.000 hectares de terres africaines en modèles de productivité et de durabilité d'ici 2030."
+                        </p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3>Notre Mission</h3>
+                    <div class="highlight-box">
+                        <p style="font-size: 18px; text-align: center;">
+                            "Cultiver l'excellence agricole au Maroc et en Afrique en combinant expertise locale, innovation technologique et investissement responsable pour nourrir le continent et créer de la valeur partagée."
+                        </p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3>Nos Valeurs Fondamentales</h3>
+                    <div class="stats-grid">
+                        <div class="value-card" style="text-align: center;">
+                            <h4>EXCELLENCE</h4>
+                            <p>Standards de qualité internationaux dans toutes nos opérations</p>
+                        </div>
+                        <div class="value-card" style="text-align: center;">
+                            <h4>INNOVATION</h4>
+                            <p>Agriculture 4.0 et technologies de pointe pour maximiser la productivité</p>
+                        </div>
+                        <div class="value-card" style="text-align: center;">
+                            <h4>DURABILITÉ</h4>
+                            <p>Pratiques respectueuses de l'environnement et des ressources naturelles</p>
+                        </div>
+                        <div class="value-card" style="text-align: center;">
+                            <h4>PARTENARIAT</h4>
+                            <p>Croissance partagée avec toutes nos parties prenantes</p>
+                        </div>
+                        <div class="value-card" style="text-align: center;">
+                            <h4>HÉRITAGE</h4>
+                            <p>Respect des traditions agricoles millénaires du Maroc</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Stratégie de Marque -->
+            <section id="strategie-marque" class="section">
+                <h2>Stratégie de Marque</h2>
+                
+                <div class="card">
+                    <h3>Positionnement Stratégique</h3>
+                    <p>AgriAfrica Ventures est le partenaire de référence pour les investisseurs et opérateurs cherchant à développer une agriculture moderne, rentable et durable en Afrique, en s'appuyant sur 30 ans d'expertise marocaine et une vision d'expansion continentale.</p>
+                    
+                    <h4>Architecture de Marque</h4>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Division</th>
+                                <th>Mission</th>
+                                <th>Marchés Cibles</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>AgriAfrica Morocco</strong></td>
+                                <td>Opérations agricoles au Maroc</td>
+                                <td>Marché local & Export</td>
+                            </tr>
+                            <tr>
+                                <td><strong>AgriAfrica West Africa</strong></td>
+                                <td>Expansion en Afrique de l'Ouest</td>
+                                <td>Marchés régionaux CEDEAO</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Atlas Carob Industries</strong></td>
+                                <td>Production et transformation du caroubier</td>
+                                <td>Europe, Amérique du Nord</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Atlas Premium Exports</strong></td>
+                                <td>Export de produits premium</td>
+                                <td>Marchés internationaux</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Atlas AgroTech Lab</strong></td>
+                                <td>Innovation et R&D agricole</td>
+                                <td>Solutions B2B</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="card">
+                    <h3>Stratégie de Communication</h3>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <h4>Phase 1: Foundation (0-3 mois)</h4>
+                            <p>Création de l'identité visuelle, site web, réseaux sociaux</p>
+                        </div>
+                        <div class="timeline-item">
+                            <h4>Phase 2: Awareness (3-6 mois)</h4>
+                            <p>Campagne PR, participation SIAM, roadshow investisseurs</p>
+                        </div>
+                        <div class="timeline-item">
+                            <h4>Phase 3: Engagement (6-12 mois)</h4>
+                            <p>Lancement produits phares, partenariats stratégiques</p>
+                        </div>
+                        <div class="timeline-item">
+                            <h4>Phase 4: Expansion (12+ mois)</h4>
+                            <p>Ouverture bureaux régionaux, thought leadership</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Production Agricole -->
+            <section id="production-agricole" class="section">
+                <h2>Stratégie de Production Agricole</h2>
+                
+                <div class="card">
+                    <h3>Portfolio de Cultures Optimal</h3>
+                    <div class="chart-container">
+                        <canvas id="portfolioChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3>Focus Stratégique : Le Caroubier</h3>
+                    <div class="highlight-box">
+                        <h4>Objectif : Position Dominante sur le Marché du Caroubier</h4>
+                        <div class="progress-bar">
+                            <div class="progress" style="width: 10%">2026: 500 Ha</div>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress" style="width: 100%">2030: 5,000 Ha</div>
+                        </div>
+                    </div>
+                    
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Aspect</th>
+                                <th>Détails</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Variétés</td>
+                                <td>Sélection des meilleures variétés marocaines à haute teneur en gomme</td>
+                            </tr>
+                            <tr>
+                                <td>Techniques culturales</td>
+                                <td>Agriculture de précision, irrigation goutte-à-goutte, fertilisation organique</td>
+                            </tr>
+                            <tr>
+                                <td>Transformation</td>
+                                <td>Unité de transformation intégrée pour gomme de caroube (E410)</td>
+                            </tr>
+                            <tr>
+                                <td>Marchés cibles</td>
+                                <td>Industries agroalimentaire (60%), pharmaceutique (25%), cosmétique (15%)</td>
+                            </tr>
+                            <tr>
+                                <td>Certifications</td>
+                                <td>Bio EU, USDA Organic, Commerce équitable</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="card">
+                    <h3>Répartition des Cultures par Catégorie</h3>
+                    <div class="stats-grid">
+                        <div class="value-card">
+                            <h4>Cultures à Forte Valeur Ajoutée (30%)</h4>
+                            <ul>
+                                <li>Caroubier</li>
+                                <li>Avocat</li>
+                                <li>Fruits rouges</li>
+                                <li>Agrumes premium</li>
+                            </ul>
+                        </div>
+                        <div class="value-card">
+                            <h4>Cultures d'Exportation (40%)</h4>
+                            <ul>
+                                <li>Tomates cerises</li>
+                                <li>Haricots verts</li>
+                                <li>Poivrons</li>
+                                <li>Melons/Pastèques</li>
+                            </ul>
+                        </div>
+                        <div class="value-card">
+                            <h4>Cultures Stratégiques Locales (20%)</h4>
+                            <ul>
+                                <li>Oliviers intensifs</li>
+                                <li>Céréales sélectionnées</li>
+                                <li>Cultures fourragères</li>
+                            </ul>
+                        </div>
+                        <div class="value-card">
+                            <h4>Cultures Innovantes (10%)</h4>
+                            <ul>
+                                <li>Plantes aromatiques et médicinales</li>
+                                <li>Quinoa</li>
+                                <li>Stevia</li>
+                                <li>Cultures bio certifiées</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Études de Marché -->
+            <section id="etude-marche" class="section">
+                <h2>Études de Marché</h2>
+                
+                <div class="card">
+                    <h3>Analyse du Marché du Caroubier</h3>
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-label">Marché Mondial</div>
+                            <div class="stat-number">$500M</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-label">Croissance Annuelle</div>
+                            <div class="stat-number">+12%</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-label">Prix Moyen (Gomme)</div>
+                            <div class="stat-number">$15/kg</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-label">Part Maroc</div>
+                            <div class="stat-number">5%</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3>Opportunités de Marché par Culture</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Culture</th>
+                                <th>Marché (MMAD)</th>
+                                <th>Croissance</th>
+                                <th>Position Visée</th>
+                                <th>Potentiel Export</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Caroubier</td>
+                                <td>500</td>
+                                <td>+12%</td>
+                                <td>Leader National</td>
+                                <td>85%</td>
+                            </tr>
+                            <tr>
+                                <td>Avocat</td>
+                                <td>800</td>
+                                <td>+15%</td>
+                                <td>Top 3</td>
+                                <td>70%</td>
+                            </tr>
+                            <tr>
+                                <td>Fruits Rouges</td>
+                                <td>1,200</td>
+                                <td>+18%</td>
+                                <td>Top 5</td>
+                                <td>90%</td>
+                            </tr>
+                            <tr>
+                                <td>Tomates Cerises</td>
+                                <td>600</td>
+                                <td>+8%</td>
+                                <td>Top 5</td>
+                                <td>60%</td>
+                            </tr>
+                            <tr>
+                                <td>Agrumes Premium</td>
+                                <td>1,500</td>
+                                <td>+6%</td>
+                                <td>Top 10</td>
+                                <td>50%</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="card">
+                    <h3>Analyse de la Demande par Zone Géographique</h3>
+                    <div class="chart-container">
+                        <canvas id="demandChart"></canvas>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Plan Opérationnel -->
+            <section id="plan-operationnel" class="section">
+                <h2>Plan de Développement Opérationnel</h2>
+                
+                <div class="card">
+                    <h3>Phases d'Expansion Géographique</h3>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <h4>Phase 1 (2026-2027): Consolidation Maroc</h4>
+                            <p><strong>10,000 Ha</strong> - Régions: Souss-Massa, Oriental, Gharb</p>
+                            <p>Focus: Infrastructure de base, stations de conditionnement</p>
+                        </div>
+                        <div class="timeline-item">
+                            <h4>Phase 2 (2028-2029): Expansion Régionale</h4>
+                            <p><strong>25,000 Ha</strong> - Extension: Tout le Maroc agricole</p>
+                            <p>Focus: Unités de transformation, certifications internationales</p>
+                        </div>
+                        <div class="timeline-item">
+                            <h4>Phase 3 (2030+): Expansion Afrique de l'Ouest</h4>
+                            <p><strong>50,000 Ha</strong> - Pays: Sénégal, Côte d'Ivoire, Ghana</p>
+                            <p>Focus: Joint-ventures locales, transfert de technologie</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3>Infrastructures & Technologies</h3>
+                    <div class="stats-grid">
+                        <div class="value-card">
+                            <h4>Stations de Conditionnement</h4>
+                            <ul>
+                                <li>5 stations principales (2027)</li>
+                                <li>15 stations régionales (2030)</li>
+                                <li>Capacité: 500,000 T/an</li>
+                            </ul>
+                        </div>
+                        <div class="value-card">
+                            <h4>Chambres Froides</h4>
+                            <ul>
+                                <li>Capacité totale: 100,000 T</li>
+                                <li>Technologie: Atmosphère contrôlée</li>
+                                <li>Localisation: Zones de production</li>
+                            </ul>
+                        </div>
+                        <div class="value-card">
+                            <h4>Irrigation Moderne</h4>
+                            <ul>
+                                <li>100% goutte-à-goutte</li>
+                                <li>Capteurs IoT</li>
+                                <li>Économie d'eau: 40%</li>
+                            </ul>
+                        </div>
+                        <div class="value-card">
+                            <h4>Technologies AgTech</h4>
+                            <ul>
+                                <li>Drones de surveillance</li>
+                                <li>IA prédictive</li>
+                                <li>Blockchain traçabilité</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3>Plan de Recrutement</h3>
+                    <div class="chart-container">
+                        <canvas id="recruitmentChart"></canvas>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Projections Financières -->
+            <section id="projections-financieres" class="section">
+                <h2>Projections Financières 2026-2030</h2>
+                
+                <div class="card">
+                    <h3>Évolution du Chiffre d'Affaires</h3>
+                    <div class="chart-container">
+                        <canvas id="revenueChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3>Compte de Résultat Prévisionnel (MMAD)</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Éléments</th>
+                                <th>2026</th>
+                                <th>2027</th>
+                                <th>2028</th>
+                                <th>2029</th>
+                                <th>2030</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Chiffre d'Affaires</strong></td>
+                                <td>350</td>
+                                <td>650</td>
+                                <td>1,200</td>
+                                <td>1,800</td>
+                                <td>2,500</td>
+                            </tr>
+                            <tr>
+                                <td>Coûts de Production</td>
+                                <td>210</td>
+                                <td>390</td>
+                                <td>720</td>
+                                <td>1,080</td>
+                                <td>1,500</td>
+                            </tr>
+                            <tr>
+                                <td>Charges d'Exploitation</td>
+                                <td>70</td>
+                                <td>130</td>
+                                <td>240</td>
+                                <td>360</td>
+                                <td>500</td>
+                            </tr>
+                            <tr>
+                                <td><strong>EBITDA</strong></td>
+                                <td>70</td>
+                                <td>130</td>
+                                <td>240</td>
+                                <td>360</td>
+                                <td>500</td>
+                            </tr>
+                            <tr>
+                                <td>Marge EBITDA (%)</td>
+                                <td>20%</td>
+                                <td>20%</td>
+                                <td>20%</td>
+                                <td>20%</td>
+                                <td>20%</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="card">
+                    <h3>Plan de Financement - Emprunt Obligataire</h3>
+                    <div class="stats-grid">
+                        <div class="value-card">
+                            <h4>Tranche 1: 150 MMAD (2026)</h4>
+                            <ul>
+                                <li>Acquisition foncière: 50 MMAD</li>
+                                <li>Infrastructure base: 70 MMAD</li>
+                                <li>Fonds de roulement: 30 MMAD</li>
+                            </ul>
+                        </div>
+                        <div class="value-card">
+                            <h4>Tranche 2: 350 MMAD (2027)</h4>
+                            <ul>
+                                <li>Expansion foncière: 150 MMAD</li>
+                                <li>Équipements: 120 MMAD</li>
+                                <li>Technologies: 80 MMAD</li>
+                            </ul>
+                        </div>
+                        <div class="value-card">
+                            <h4>Tranche 3: 500 MMAD (2028)</h4>
+                            <ul>
+                                <li>Expansion Afrique: 250 MMAD</li>
+                                <li>Transformation: 150 MMAD</li>
+                                <li>Working capital: 100 MMAD</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3>Indicateurs de Performance</h3>
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-label">TRI Projet</div>
+                            <div class="stat-number">25.3%</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-label">VAN (MMAD)</div>
+                            <div class="stat-number">1,850</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-label">Payback</div>
+                            <div class="stat-number">4.5 ans</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-label">ROCE 2030</div>
+                            <div class="stat-number">18.5%</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Stratégie ESG -->
+            <section id="strategie-esg" class="section">
+                <h2>Stratégie ESG et Durabilité</h2>
+                
+                <div class="card">
+                    <h3>Engagement Environnemental</h3>
+                    <div class="stats-grid">
+                        <div class="value-card">
+                            <h4>Gestion de l'Eau</h4>
+                            <p>Réduction de 40% de la consommation d'eau grâce à l'irrigation de précision</p>
+                            <div class="progress-bar">
+                                <div class="progress" style="width: 40%">-40% consommation</div>
+                            </div>
+                        </div>
+                        <div class="value-card">
+                            <h4>Énergie Renouvelable</h4>
+                            <p>100% d'énergie solaire pour les stations de conditionnement d'ici 2030</p>
+                            <div class="progress-bar">
+                                <div class="progress" style="width: 100%">100% solaire</div>
+                            </div>
+                        </div>
+                        <div class="value-card">
+                            <h4>Bilan Carbone</h4>
+                            <p>Neutralité carbone visée pour 2030 via séquestration et compensation</p>
+                            <div class="progress-bar">
+                                <div class="progress" style="width: 75%">Neutralité 2030</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3>Impact Social</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Indicateur</th>
+                                <th>2026</th>
+                                <th>2030</th>
+                                <th>Impact</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Emplois directs</td>
+                                <td>2,000</td>
+                                <td>10,000</td>
+                                <td>+400%</td>
+                            </tr>
+                            <tr>
+                                <td>Emplois indirects</td>
+                                <td>5,000</td>
+                                <td>25,000</td>
+                                <td>+400%</td>
+                            </tr>
+                            <tr>
+                                <td>Agriculteurs formés</td>
+                                <td>500</td>
+                                <td>5,000</td>
+                                <td>+900%</td>
+                            </tr>
+                            <tr>
+                                <td>% Femmes employées</td>
+                                <td>30%</td>
+                                <td>40%</td>
+                                <td>+33%</td>
+                            </tr>
+                            <tr>
+                                <td>Villages impactés</td>
+                                <td>20</td>
+                                <td>200</td>
+                                <td>+900%</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="card">
+                    <h3>Gouvernance</h3>
+                    <div class="highlight-box">
+                        <h4>Nos Engagements</h4>
+                        <ul>
+                            <li>✓ Transparence totale dans le reporting financier et ESG</li>
+                            <li>✓ Certifications internationales: ISO 14001, GlobalGAP, Bio EU</li>
+                            <li>✓ Code d'éthique strict pour tous les employés et partenaires</li>
+                            <li>✓ Comité ESG indépendant au sein du conseil d'administration</li>
+                            <li>✓ Audit annuel par un tiers indépendant</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Risques & Mitigation -->
+            <section id="risques-mitigation" class="section">
+                <h2>Analyse des Risques et Mitigation</h2>
+                
+                <div class="card">
+                    <h3>Matrice des Risques</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Type de Risque</th>
+                                <th>Probabilité</th>
+                                <th>Impact</th>
+                                <th>Stratégie de Mitigation</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Risques Climatiques</strong></td>
+                                <td>Élevée</td>
+                                <td>Fort</td>
+                                <td>
+                                    • Diversification géographique<br>
+                                    • Assurance récolte<br>
+                                    • Systèmes d'irrigation résilients
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>Risques de Marché</strong></td>
+                                <td>Moyenne</td>
+                                <td>Moyen</td>
+                                <td>
+                                    • Contrats long terme<br>
+                                    • Diversification des cultures<br>
+                                    • Hedging sur matières premières
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>Risques Opérationnels</strong></td>
+                                <td>Faible</td>
+                                <td>Moyen</td>
+                                <td>
+                                    • Formation continue<br>
+                                    • Maintenance préventive<br>
+                                    • Plans de continuité
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>Risques Financiers</strong></td>
+                                <td>Moyenne</td>
+                                <td>Fort</td>
+                                <td>
+                                    • Structure de capital solide<br>
+                                    • Lignes de crédit backup<br>
+                                    • Couverture de change
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>Risques Réglementaires</strong></td>
+                                <td>Faible</td>
+                                <td>Faible</td>
+                                <td>
+                                    • Veille réglementaire<br>
+                                    • Compliance proactive<br>
+                                    • Relations institutionnelles
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="card">
+                    <h3>Plan de Continuité d'Activité</h3>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <h4>Prévention</h4>
+                            <p>Systèmes d'alerte précoce, formation du personnel, audits réguliers</p>
+                        </div>
+                        <div class="timeline-item">
+                            <h4>Protection</h4>
+                            <p>Assurances complètes, stocks de sécurité, redondance des systèmes</p>
+                        </div>
+                        <div class="timeline-item">
+                            <h4>Réaction</h4>
+                            <p>Cellule de crise 24/7, procédures d'urgence, communication de crise</p>
+                        </div>
+                        <div class="timeline-item">
+                            <h4>Récupération</h4>
+                            <p>Plans de reprise, support aux équipes, reconstruction rapide</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Feuille de Route -->
+            <section id="feuille-route" class="section">
+                <h2>Feuille de Route 2026-2030</h2>
+                
+                <div class="card">
+                    <h3>Jalons Stratégiques</h3>
+                    <div class="chart-container">
+                        <canvas id="roadmapChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3>Plan d'Action Détaillé 2026</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Trimestre</th>
+                                <th>Actions Clés</th>
+                                <th>Budget (MMAD)</th>
+                                <th>KPIs</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Q1 2026</strong></td>
+                                <td>
+                                    • Finalisation structure juridique<br>
+                                    • Levée Tranche 1 (150 MMAD)<br>
+                                    • Acquisition premiers terrains
+                                </td>
+                                <td>50</td>
+                                <td>
+                                    • 2,000 Ha acquis<br>
+                                    • Structure opérationnelle
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>Q2 2026</strong></td>
+                                <td>
+                                    • Début plantations caroubier<br>
+                                    • Installation irrigation<br>
+                                    • Recrutement équipe core
+                                </td>
+                                <td>40</td>
+                                <td>
+                                    • 500 Ha plantés<br>
+                                    • 50 employés
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>Q3 2026</strong></td>
+                                <td>
+                                    • Lancement cultures maraîchères<br>
+                                    • Première station conditionnement<br>
+                                    • Certifications bio
+                                </td>
+                                <td>35</td>
+                                <td>
+                                    • 1,000 Ha cultivés<br>
+                                    • Certification obtenue
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>Q4 2026</strong></td>
+                                <td>
+                                    • Premiers exports<br>
+                                    • Partenariats commerciaux<br>
+                                    • Bilan année 1
+                                </td>
+                                <td>25</td>
+                                <td>
+                                    • 100 MMAD CA<br>
+                                    • 5 contrats export
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="card">
+                    <h3>Prochaines Étapes Immédiates</h3>
+                    <div class="highlight-box">
+                        <h4>Actions Prioritaires (30 jours)</h4>
+                        <ol>
+                            <li>Validation du business plan par les actionnaires</li>
+                            <li>Constitution formelle d'AgriAfrica Ventures SA</li>
+                            <li>Ouverture des comptes bancaires et mise en place de la gouvernance</li>
+                            <li>Lancement du processus de levée obligataire (Tranche 1)</li>
+                            <li>Identification et négociation des premiers terrains</li>
+                            <li>Recrutement du Directeur Général et du CFO</li>
+                            <li>Développement du site web et lancement de la communication</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div class="card" style="text-align: center; padding: 40px;">
+                    <h3>Rejoignez l'Aventure AgriAfrica Ventures</h3>
+                    <p style="font-size: 18px; margin: 20px 0;">
+                        Ensemble, transformons l'agriculture africaine et créons un avenir durable et prospère.
+                    </p>
+                    <button class="btn" onclick="alert('Pour plus d\'informations, contactez-nous à: invest@agriafricaventures.com')">
+                        Contactez-nous pour Investir
+                    </button>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        // Navigation
+        function showSection(sectionId) {
+            // Hide all sections
+            document.querySelectorAll('.section').forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Show selected section
+            document.getElementById(sectionId).classList.add('active');
+            
+            // Update navigation
+            document.querySelectorAll('.nav-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            // Close mobile menu if open
+            if (window.innerWidth <= 768) {
+                document.getElementById('sidebar').classList.remove('open');
+            }
+            
+            // Scroll to top
+            window.scrollTo(0, 0);
+        }
+
+        // Mobile menu toggle
+        function toggleMenu() {
+            document.getElementById('sidebar').classList.toggle('open');
+        }
+
+        // Initialize Charts
+        document.addEventListener('DOMContentLoaded', function() {
+            // KPI Evolution Chart
+            const kpiCtx = document.getElementById('kpiChart');
+            if (kpiCtx) {
+                new Chart(kpiCtx.getContext('2d'), {
+                    type: 'line',
+                    data: {
+                        labels: ['2026', '2027', '2028', '2029', '2030'],
+                        datasets: [{
+                            label: 'Surface Cultivée (Ha)',
+                            data: [5000, 10000, 20000, 35000, 50000],
+                            borderColor: '#2A5434',
+                            backgroundColor: 'rgba(42, 84, 52, 0.1)',
+                            yAxisID: 'y',
+                        }, {
+                            label: 'Chiffre d\'Affaires (MMAD)',
+                            data: [350, 650, 1200, 1800, 2500],
+                            borderColor: '#D4A574',
+                            backgroundColor: 'rgba(212, 165, 116, 0.1)',
+                            yAxisID: 'y1',
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        interaction: {
+                            mode: 'index',
+                            intersect: false,
+                        },
+                        scales: {
+                            y: {
+                                type: 'linear',
+                                display: true,
+                                position: 'left',
+                                title: {
+                                    display: true,
+                                    text: 'Surface (Ha)'
+                                }
+                            },
+                            y1: {
+                                type: 'linear',
+                                display: true,
+                                position: 'right',
+                                title: {
+                                    display: true,
+                                    text: 'CA (MMAD)'
+                                },
+                                grid: {
+                                    drawOnChartArea: false,
+                                },
+                            },
+                        }
+                    }
+                });
+            }
+
+            // Portfolio Distribution Chart
+            const portfolioCtx = document.getElementById('portfolioChart');
+            if (portfolioCtx) {
+                new Chart(portfolioCtx.getContext('2d'), {
+                    type: 'doughnut',
+                    data: {
+                        labels: ['Cultures à Forte Valeur Ajoutée', 'Cultures d\'Exportation', 'Cultures Stratégiques Locales', 'Cultures Innovantes'],
+                        datasets: [{
+                            data: [30, 40, 20, 10],
+                            backgroundColor: ['#2A5434', '#D4A574', '#1E6BA8', '#A0522D']
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                position: 'bottom',
+                            }
+                        }
+                    }
+                });
+            }
+
+            // Demand by Region Chart
+            const demandCtx = document.getElementById('demandChart');
+            if (demandCtx) {
+                new Chart(demandCtx.getContext('2d'), {
+                    type: 'bar',
+                    data: {
+                        labels: ['Maroc', 'Europe', 'Afrique de l\'Ouest', 'Moyen-Orient', 'Amérique du Nord'],
+                        datasets: [{
+                            label: '2026',
+                            data: [30, 45, 10, 10, 5],
+                            backgroundColor: '#2A5434'
+                        }, {
+                            label: '2030',
+                            data: [25, 40, 20, 10, 5],
+                            backgroundColor: '#D4A574'
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                title: {
+                                    display: true,
+                                    text: 'Part de Marché (%)'
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+
+            // Revenue Evolution Chart
+            const revenueCtx = document.getElementById('revenueChart');
+            if (revenueCtx) {
+                new Chart(revenueCtx.getContext('2d'), {
+                    type: 'bar',
+                    data: {
+                        labels: ['2026', '2027', '2028', '2029', '2030'],
+                        datasets: [{
+                            label: 'Marché Local',
+                            data: [105, 162, 240, 270, 250],
+                            backgroundColor: '#2A5434'
+                        }, {
+                            label: 'Export Europe',
+                            data: [175, 325, 600, 900, 1250],
+                            backgroundColor: '#1E6BA8'
+                        }, {
+                            label: 'Export Afrique',
+                            data: [35, 97, 240, 450, 750],
+                            backgroundColor: '#D4A574'
+                        }, {
+                            label: 'Autres Marchés',
+                            data: [35, 66, 120, 180, 250],
+                            backgroundColor: '#A0522D'
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        scales: {
+                            x: {
+                                stacked: true,
+                            },
+                            y: {
+                                stacked: true,
+                                title: {
+                                    display: true,
+                                    text: 'Chiffre d\'Affaires (MMAD)'
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+
+            // Recruitment Chart
+            const recruitmentCtx = document.getElementById('recruitmentChart');
+            if (recruitmentCtx) {
+                new Chart(recruitmentCtx.getContext('2d'), {
+                    type: 'line',
+                    data: {
+                        labels: ['2026', '2027', '2028', '2029', '2030'],
+                        datasets: [{
+                            label: 'Emplois Directs',
+                            data: [2000, 3500, 5500, 7500, 10000],
+                            borderColor: '#2A5434',
+                            backgroundColor: 'rgba(42, 84, 52, 0.1)',
+                            fill: true
+                        }, {
+                            label: 'Emplois Indirects',
+                            data: [5000, 8750, 13750, 18750, 25000],
+                            borderColor: '#D4A574',
+                            backgroundColor: 'rgba(212, 165, 116, 0.1)',
+                            fill: true
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                position: 'top',
+                            }
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                title: {
+                                    display: true,
+                                    text: 'Nombre d\'Emplois'
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+
+            // Roadmap Gantt Chart
+            const roadmapCtx = document.getElementById('roadmapChart');
+            if (roadmapCtx) {
+                new Chart(roadmapCtx.getContext('2d'), {
+                    type: 'bar',
+                    data: {
+                        labels: ['Structure & Financement', 'Infrastructure Base', 'Production Phase 1', 'Expansion Maroc', 'Transformation', 'Expansion Afrique'],
+                        datasets: [{
+                            label: 'Timeline',
+                            data: [
+                                { x: ['2026-01', '2026-06'], y: 0 },
+                                { x: ['2026-03', '2027-06'], y: 1 },
+                                { x: ['2026-06', '2028-12'], y: 2 },
+                                { x: ['2027-01', '2029-12'], y: 3 },
+                                { x: ['2027-06', '2029-06'], y: 4 },
+                                { x: ['2028-01', '2030-12'], y: 5 }
+                            ],
+                            backgroundColor: [
+                                '#2A5434',
+                                '#1E6BA8',
+                                '#D4A574',
+                                '#A0522D',
+                                '#2A5434',
+                                '#1E6BA8'
+                            ]
+                        }]
+                    },
+                    options: {
+                        indexAxis: 'y',
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                display: false
+                            }
+                        },
+                        scales: {
+                            x: {
+                                type: 'time',
+                                time: {
+                                    unit: 'year'
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+
+            // Animate progress bars when visible
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const progressBars = entry.target.querySelectorAll('.progress');
+                        progressBars.forEach(bar => {
+                            const width = bar.style.width;
+                            bar.style.width = '0';
+                            setTimeout(() => {
+                                bar.style.width = width;
+                            }, 100);
+                        });
+                    }
+                });
+            });
+
+            document.querySelectorAll('.progress-bar').forEach(bar => {
+                observer.observe(bar);
+            });
+        });
+    </script>
+</body>
+</html>
